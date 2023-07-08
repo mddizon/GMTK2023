@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=14 format=3 uid="uid://dolngcivhpq68"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_n1rjj"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
 [ext_resource type="Resource" uid="uid://bjh84wjjk4a08" path="res://resources/Collider.tres" id="3_nobio"]
 [ext_resource type="Texture2D" uid="uid://df7deiklt2v5j" path="res://assets/HumanShip/BombCounter.png" id="3_tu54s"]
+[ext_resource type="FontFile" uid="uid://tc62b5xsksgo" path="res://assets/fonts/NESCyrillic.ttf" id="4_n24fd"]
 [ext_resource type="Resource" uid="uid://btrq546gs6qdq" path="res://resources/FastCollider.tres" id="4_ojr7b"]
 [ext_resource type="Resource" uid="uid://oq6sughmeu67" path="res://resources/StraightShooter.tres" id="5_11dgb"]
 [ext_resource type="Resource" uid="uid://cu230se8aq3i4" path="res://resources/WaveLeft.tres" id="6_11lp4"]
@@ -14,6 +15,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgm1a"]
 shader = ExtResource("3_ae1a1")
 shader_parameter/bg_color = null
+
+[sub_resource type="Theme" id="Theme_50ys0"]
+default_font = ExtResource("4_n24fd")
+default_font_size = 36
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_n1rjj")
@@ -38,6 +43,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = SubResource("Theme_50ys0")
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 custom_minimum_size = Vector2(280, 480)
@@ -70,13 +76,13 @@ grow_vertical = 2
 
 [node name="Resource" type="Label" parent="Control/PanelContainer/Rows/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "  Resources: 999"
-vertical_alignment = 2
+text = "Resources: 999"
+horizontal_alignment = 1
 
 [node name="Hive" type="Label" parent="Control/PanelContainer/Rows/ColorRect/VBoxContainer"]
 layout_mode = 2
-text = "  Hive:"
-vertical_alignment = 2
+text = "Hive"
+horizontal_alignment = 1
 
 [node name="BugMarket" type="VBoxContainer" parent="Control/PanelContainer/Rows/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -132,8 +138,8 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="Control/PanelContainer/Rows/ColorRect3/BombRows"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "  Bombs:"
-vertical_alignment = 2
+text = "  Bombs"
+horizontal_alignment = 1
 
 [node name="BombColumns" type="HBoxContainer" parent="Control/PanelContainer/Rows/ColorRect3/BombRows"]
 layout_mode = 2
