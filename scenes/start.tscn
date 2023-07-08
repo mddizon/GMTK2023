@@ -77,7 +77,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 180
-text = "ALAGAG"
+text = "AGALAG"
 horizontal_alignment = 1
 vertical_alignment = 1
 
