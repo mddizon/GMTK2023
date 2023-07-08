@@ -22,6 +22,7 @@ extends Node2D
 @export var total_distance = 5000
 
 var bomb_texture = preload("res://assets/HumanShip/BombCounter.png")
+var game_over = preload("res://scenes/game_over.tscn")
 var Unit = preload("res://scenes/unit.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,8 @@ func _ready():
 	
 	for button in buttons:
 		button.spawn_bug.connect(_on_spawn_bug)
+
+	GlobalTypes.won = false
 	
 	updateBombLabel()
 	updateResourceLabel()
@@ -63,6 +66,8 @@ func _on_ship_hit():
 		updateBombLabel()
 	else:
 		ship.queue_free()
+		GlobalTypes.won = true
+		get_tree().change_scene_to_packed(game_over)
 
 func _on_spawn_bug(stats:BugStats):
 	if (stats.cost <= resources):
@@ -99,4 +104,5 @@ func updateDistanceLabel():
 
 func _on_game_over_timer_timeout():
 	if num_bombs >= 0:
-		print('You Lose!')
+		GlobalTypes.won = false
+		get_tree().change_scene_to_packed(game_over)

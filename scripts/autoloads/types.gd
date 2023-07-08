@@ -21,5 +21,7 @@ enum Powers {
 	BOMB
 }
 
-const clampBegin = Vector2(20, 440);
-const clampEnd = Vector2(340, 440);
+const clampBegin = Vector2(20, 440)
+const clampEnd = Vector2(340, 440)
+
+var won = false

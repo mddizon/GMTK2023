@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://yf2ios1b5gqc"]
+
+[ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="1_s0vqb"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="2_3ukvr"]
+[ext_resource type="Shader" path="res://assets/game.gdshader" id="2_saeop"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jafjg"]
+shader = ExtResource("2_saeop")
+shader_parameter/bg_color = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbas3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 8.0
+expand_margin_top = 2.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbt7m"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 8.0
+expand_margin_top = 2.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7icp"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s0vqb")
+script = ExtResource("2_3ukvr")
+win_title = "Victory!"
+lose_title = "Defeat!"
+win_text = "Thank you o glorious one!
+
+The ship has been successfully destroyed with minimal losses. you can easily spawn more brood to refill our ranks. Galactic domination is upon us!"
+lose_text = "You suck. Get gud scrub. Skill issue."
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jafjg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 170
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Thank you o glorious one!
+
+The ship has been successfully destroyed with minimal losses. you can easily spawn more brood to refill our ranks. Galactic domination is upon us!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="PlayAgain" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gbas3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sbt7m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y7icp")
+text = "Play Again?"
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
