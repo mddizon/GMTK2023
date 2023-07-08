@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BugStats" load_steps=3 format=3 uid="uid://cu230se8aq3i4"]
+
+[ext_resource type="Script" path="res://scripts/bug_stats.gd" id="1_0vd71"]
+[ext_resource type="Texture2D" uid="uid://cpvcf2m0421a3" path="res://assets/Bugs/Bug_Purple_1.png" id="1_x6kro"]
+
+[resource]
+script = ExtResource("1_0vd71")
+cost = 3
+move_pattern = 1
+move_speed = 100
+attack_pattern = 0
+shot_cooldown = 1
+shot_speed = 200
+powerup = Array[int]([0])
+drop_rate = 0
+img = ExtResource("1_x6kro")

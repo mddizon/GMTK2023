@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ve16b4fuxcn"]
+
+[ext_resource type="Script" path="res://scripts/unit.gd" id="1_pd5pq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svh85"]
+size = Vector2(51, 54)
+
+[node name="Unit" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_pd5pq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_svh85")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -50)
+
+[node name="ShotPosition" type="Marker2D" parent="."]
+position = Vector2(0, 36)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
