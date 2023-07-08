@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5gf7"]
 radius = 6.0
-height = 32.0
+height = 14.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
@@ -17,7 +17,7 @@ position = Vector2(0, -16)
 texture = ExtResource("2_pgr3h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_w5gf7")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
