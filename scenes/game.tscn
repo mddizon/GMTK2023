@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dolngcivhpq68"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_n1rjj"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_3emra"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
@@ -18,7 +18,7 @@ shader = ExtResource("3_ae1a1")
 shader_parameter/bg_color = null
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_n1rjj")
+script = ExtResource("1_3emra")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mgm1a")
