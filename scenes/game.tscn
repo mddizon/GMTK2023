@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=22 format=3 uid="uid://dolngcivhpq68"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_w5hnb"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_ry2p6"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cj03ptnqftfhh" path="res://assets/UI/Timer.png" id="12_d1f82"]
 [ext_resource type="PackedScene" uid="uid://0if2tr8we67o" path="res://scenes/deployment_zones.tscn" id="12_uh82o"]
 [ext_resource type="Texture2D" uid="uid://bm70mu7bhhjfl" path="res://assets/UI/bomb_tracker.png" id="13_q27el"]
+[ext_resource type="Script" path="res://scripts/shaky_cam.gd" id="17_gsua0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgm1a"]
 shader = ExtResource("3_ae1a1")
@@ -78,7 +79,7 @@ _data = {
 }
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_w5hnb")
+script = ExtResource("1_ry2p6")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mgm1a")
@@ -292,6 +293,13 @@ libraries = {
 "": SubResource("AnimationLibrary_3706q")
 }
 
+[node name="ShakyCam" type="Camera2D" parent="."]
+position = Vector2(320, 240)
+script = ExtResource("17_gsua0")
+
+[node name="Timer" type="Timer" parent="ShakyCam"]
+
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="deploy_zones" from="DeploymentZones" to="." method="_on_deployment_zones_deploy_zones"]
 [connection signal="zone_spawn_toggled" from="DeploymentZones" to="." method="_on_deployment_zones_zone_spawn_toggled"]
+[connection signal="timeout" from="ShakyCam/Timer" to="ShakyCam" method="_on_timer_timeout"]

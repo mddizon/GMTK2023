@@ -19,6 +19,7 @@ extends Node2D
 @onready var powerup_label = $PowerupLabel
 @onready var explosion = $Asplosion
 @onready var animation_player = $AnimationPlayer
+@onready var camera = $ShakyCam
 
 @export var units: Array[BugStats] = []
 @export var num_bombs = 3
@@ -99,6 +100,7 @@ func _on_ship_hit():
 		explosion.visible = true
 		AudioManager.playShipDeathSound()
 		explosion.play('default')
+		camera.shake(.3, 5)
 	else:
 		ship.queue_free()
 		GlobalTypes.won = true
