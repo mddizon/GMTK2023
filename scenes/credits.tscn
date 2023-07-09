@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://yf2ios1b5gqc"]
+[gd_scene load_steps=8 format=3 uid="uid://cny4lk8i10xxl"]
 
-[ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="1_s0vqb"]
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="2_3ukvr"]
-[ext_resource type="Shader" path="res://assets/game.gdshader" id="2_saeop"]
+[ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="1_do7rv"]
+[ext_resource type="Shader" path="res://assets/game.gdshader" id="2_ayka7"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="2_mu17l"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jafjg"]
-shader = ExtResource("2_saeop")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x3aak"]
+shader = ExtResource("2_ayka7")
 shader_parameter/bg_color = null
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbas3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h5yb"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 1
 border_width_top = 1
@@ -24,7 +24,7 @@ expand_margin_top = 2.0
 expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbt7m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqern"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
 border_width_top = 2
@@ -40,28 +40,20 @@ expand_margin_top = 2.0
 expand_margin_right = 8.0
 expand_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y7icp"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktqbl"]
 
-[node name="GameOver" type="Control"]
+[node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_s0vqb")
-script = ExtResource("2_3ukvr")
-win_title = "Victory!"
-lose_title = "Defeat!"
-win_text = "Thank you o glorious one!
-
-The human ship has been successfully destroyed! your brood will spread across the galaxy. 
-
-Galactic domination is upon us!"
-lose_text = "The humans have destroyed our planet, and killed our queen!"
+theme = ExtResource("1_do7rv")
+script = ExtResource("2_mu17l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_jafjg")
+material = SubResource("ShaderMaterial_x3aak")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,19 +74,32 @@ theme_override_constants/margin_right = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 170
-text = "Victory!"
+theme_override_font_sizes/font_size = 100
+text = "AGALAG"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="MarginContainer2/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Label2" type="Label" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = "Thank you o glorious one!
+text = "Game Designers
+Chris Magoun, Antonio Cervantes
 
-The ship has been successfully destroyed with minimal losses. you can easily spawn more brood to refill our ranks. Galactic domination is upon us!"
+Art Direction
+Antonio Cervantes
+
+Programmer
+Mark Dizon
+
+Music provided by Kevin McLeod
+Sound effects provided by zapsplat.com
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -103,14 +108,14 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_constants/margin_top = 20
 
-[node name="PlayAgain" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Back" type="Button" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_gbas3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_sbt7m")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_y7icp")
-text = "Return to Title"
+theme_override_styles/normal = SubResource("StyleBoxFlat_5h5yb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eqern")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ktqbl")
+text = "Back"
 
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Back" to="." method="_on_back_pressed"]

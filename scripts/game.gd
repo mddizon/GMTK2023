@@ -51,8 +51,10 @@ func _ready():
 	var buttons = bug_row_1.get_children()
 	buttons.append_array(bug_row_2.get_children())
 
-	for button in buttons:
-		button.spawn_bug.connect(_on_stage_bug)
+	for i in buttons.size():
+		var bug_button = buttons[i]
+		bug_button.index = i
+		bug_button.spawn_bug.connect(_on_stage_bug)
 
 	buttons[0].button_pressed = true
 

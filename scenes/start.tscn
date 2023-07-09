@@ -107,4 +107,20 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_he66m")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lukrt")
 text = "Summon the swarm"
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Credits" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_a6rka")
+theme_override_styles/hover = SubResource("StyleBoxFlat_he66m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lukrt")
+text = "Credits"
+
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

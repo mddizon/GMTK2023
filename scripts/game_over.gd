@@ -21,4 +21,6 @@ func _ready():
 		AudioManager.playLoseMusic()
 
 func _on_play_again_pressed():
-	get_tree().change_scene_to_packed(game)
+	var start = load("res://scenes/start.tscn")
+	get_tree().change_scene_to_packed(start)
+
