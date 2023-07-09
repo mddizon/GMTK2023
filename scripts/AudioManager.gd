@@ -32,6 +32,10 @@ var bugLaunchSound2 = preload("res://assets/Audio/SFX/clicking_fluttering_hiss_1
 var bugLaunchSounds = [bugLaunchSound, bugLaunchSound2]
 
 func _ready():
+	music.volume_db = music.volume_db / 2
+	soundEffects.volume_db = soundEffects.volume_db / 2
+	soundEffects2.volume_db = soundEffects2.volume_db / 2
+	soundEffects3.volume_db = soundEffects3.volume_db / 2
 	pass
 
 func playStartMusic():
