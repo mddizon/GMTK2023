@@ -3,6 +3,7 @@ extends Control
 @onready var Background = $TextureRect
 @onready var ZoneContainer = $ZoneContainer
 @onready var Deploy = $Deploy
+@onready var label = $Label
 
 signal zone_spawn_toggled(index, zone_scene, remove)
 signal deploy_zones
@@ -33,6 +34,9 @@ func _process(delta):
 	if Input.is_action_just_released("spawn"):
 		_on_deploy_button_up()
 		_on_deploy_pressed()
+	
+	#Should probably get this from a signal
+	updateCostText()
 
 func _on_deploy_pressed():
 	if canBuy:
@@ -45,3 +49,7 @@ func _on_deploy_button_down():
 
 func _on_deploy_button_up():
 	Background.texture = button_up
+
+func updateCostText():
+	var cost = GlobalTypes.calculate_cost()
+	label.text = "* -%d" % cost

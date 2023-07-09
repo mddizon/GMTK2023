@@ -40,3 +40,11 @@ var active_stats: Array[BugStats] = [null, null, null, null, null]
 var selected_stats = null
 var active_powerups = {}
 var powerup_time_remaining = 0
+
+# Util functions
+func calculate_cost():
+	var cost = 0;
+	for i in GlobalTypes.active_zones.size():
+		if (GlobalTypes.active_zones[i]):
+			cost += GlobalTypes.active_stats[i].cost
+	return cost

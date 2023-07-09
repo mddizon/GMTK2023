@@ -92,15 +92,8 @@ func _on_ship_hit():
 func _on_stage_bug(stats: BugStats):
 	GlobalTypes.selected_stats = stats
 
-func calculate_cost():
-	var cost = 0;
-	for i in GlobalTypes.active_zones.size():
-		if (GlobalTypes.active_zones[i]):
-			cost += GlobalTypes.active_stats[i].cost
-	return cost
-
 func deploy_bugs():
-	var cost = calculate_cost();
+	var cost = GlobalTypes.calculate_cost();
 	if cost <= resources:
 		for i in GlobalTypes.deployment_positions.size():
 			var zone_position = GlobalTypes.deployment_positions[i]
@@ -149,7 +142,7 @@ func updateBombLabel():
 		bomb_counter.add_child(textureRect)
 
 func updateResourceLabel():
-	resource_counter.text = "Larvae: %s" % resources
+	resource_counter.text = "Larvae: *%s" % resources
 
 func updateDistanceLabel():
 	var remainingTime = timer.wait_time - timer.time_left

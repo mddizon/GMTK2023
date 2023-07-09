@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl211l7gd0c6e"]
+[gd_scene load_steps=10 format=3 uid="uid://dl211l7gd0c6e"]
 
+[ext_resource type="Texture2D" uid="uid://cw140ty7t85te" path="res://assets/Bugs/Bug_Blue_1.png" id="1_wjkq2"]
 [ext_resource type="Script" path="res://scripts/bug_button.gd" id="2_umthx"]
+[ext_resource type="Resource" uid="uid://bjh84wjjk4a08" path="res://resources/Collider.tres" id="3_kmlrs"]
+[ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="4_vpwtl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vx8dm"]
 
@@ -29,6 +32,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wxrhc")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_qbbsv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tjvoy")
 action_mode = 0
+icon = ExtResource("1_wjkq2")
 script = ExtResource("2_umthx")
+stats = ExtResource("3_kmlrs")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -10.0
+offset_bottom = 26.0
+grow_horizontal = 0
+theme = ExtResource("4_vpwtl")
+text = "1"
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -54,6 +54,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_nukgp")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dnhuc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fg15q")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = -14.0
+offset_right = 246.0
+offset_bottom = 10.0
+theme = ExtResource("1_ko1i4")
+theme_override_font_sizes/font_size = 28
+text = "* -100"
+horizontal_alignment = 1
+
 [connection signal="button_down" from="Deploy" to="." method="_on_deploy_button_down"]
 [connection signal="button_up" from="Deploy" to="." method="_on_deploy_button_up"]
 [connection signal="pressed" from="Deploy" to="." method="_on_deploy_pressed"]

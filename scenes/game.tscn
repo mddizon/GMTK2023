@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=17 format=3 uid="uid://dolngcivhpq68"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_0l841"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
-[ext_resource type="Resource" uid="uid://bjh84wjjk4a08" path="res://resources/Collider.tres" id="3_nobio"]
 [ext_resource type="Texture2D" uid="uid://df7deiklt2v5j" path="res://assets/HumanShip/BombCounter.png" id="3_tu54s"]
 [ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="4_fh37n"]
 [ext_resource type="Resource" uid="uid://btrq546gs6qdq" path="res://resources/FastCollider.tres" id="4_ojr7b"]
@@ -116,7 +115,6 @@ size_flags_horizontal = 4
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("7_ngndv")
-stats = ExtResource("3_nobio")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
@@ -214,8 +212,6 @@ texture = ExtResource("3_tu54s")
 [node name="DeploymentZones" parent="." instance=ExtResource("12_uh82o")]
 offset_top = 38.0
 offset_bottom = 88.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="deploy_zones" from="DeploymentZones" to="." method="_on_deployment_zones_deploy_zones"]
