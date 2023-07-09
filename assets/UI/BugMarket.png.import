@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjpaku52yoh56"
-path="res://.godot/imported/Bug Market.png-1963940bbf95626c66ce0421f616bea5.ctex"
+uid="uid://bdoao6sx2x7u6"
+path="res://.godot/imported/BugMarket.png-0d83731483408d699b1213332375e505.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Bug Market.png"
-dest_files=["res://.godot/imported/Bug Market.png-1963940bbf95626c66ce0421f616bea5.ctex"]
+source_file="res://assets/UI/BugMarket.png"
+dest_files=["res://.godot/imported/BugMarket.png-0d83731483408d699b1213332375e505.ctex"]
 
 [params]
 
