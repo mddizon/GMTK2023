@@ -13,7 +13,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_swr11")
 }],
-"loop": true,
+"loop": false,
 "name": &"ShipIdle",
 "speed": 24.0
 }]
@@ -69,7 +69,6 @@ avoid_range = 60
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_twfpp")
 animation = &"ShipIdle"
-autoplay = "ShipIdle"
 frame = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

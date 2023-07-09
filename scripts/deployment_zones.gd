@@ -20,6 +20,10 @@ func _ready():
 	for i in GlobalTypes.deployment_positions.size():
 		var zone = deployment_zone.instantiate()
 		zone.index = i
+		
+		#This is really dumb, change this if you ever bother
+		if i == 2:
+			zone.icon = load("res://assets/Bugs/Bug_Blue_1.png")
 		ZoneContainer.add_child(zone)
 
 func _process(delta):

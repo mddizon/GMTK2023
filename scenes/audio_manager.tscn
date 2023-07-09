@@ -12,3 +12,5 @@ script = ExtResource("1_nad5g")
 [node name="SoundChannel2" type="AudioStreamPlayer" parent="."]
 
 [node name="SoundChannel3" type="AudioStreamPlayer" parent="."]
+
+[node name="ExplosionChannel" type="AudioStreamPlayer" parent="."]

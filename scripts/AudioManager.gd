@@ -4,6 +4,7 @@ extends Node2D
 @onready var soundEffects: AudioStreamPlayer = $SoundChannel
 @onready var soundEffects2: AudioStreamPlayer = $SoundChannel2
 @onready var soundEffects3: AudioStreamPlayer = $SoundChannel3
+@onready var explosion: AudioStreamPlayer = $ExplosionChannel
 
 var startMenuMusic = preload("res://assets/Audio/Music/Rising Tide (faster).mp3")
 var gameMusic = preload("res://assets/Audio/Music/Voltaic.mp3")
@@ -36,6 +37,7 @@ func _ready():
 	soundEffects.volume_db = -20
 	soundEffects2.volume_db = -20
 	soundEffects3.volume_db = -20
+	explosion.volume_db = -20
 	pass
 
 func playStartMusic():
@@ -68,14 +70,13 @@ func playBugDeathSound():
 	_playSoundEffect(bugDeathSounds)
 
 func playShipDeathSound():
-	_playSoundEffect(shipDeathSounds)
+	_playSoundEffect(shipDeathSounds, explosion)
 
 func playBugLaunchSound():
 	_playSoundEffect(bugLaunchSounds)	
 
-func _playSoundEffect(sounds: Array):
+func _playSoundEffect(sounds: Array, channel: AudioStreamPlayer = _findFreeChannel()):
 	var soundClip = sounds[randi_range(0, sounds.size() - 1)]
-	var channel = _findFreeChannel()
 	if (channel != null):
 		channel.stream = soundClip
 		channel.play()

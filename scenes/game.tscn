@@ -1,12 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=21 format=3 uid="uid://dolngcivhpq68"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_0l841"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_w5hnb"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
 [ext_resource type="Texture2D" uid="uid://df7deiklt2v5j" path="res://assets/HumanShip/BombCounter.png" id="3_tu54s"]
 [ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="4_fh37n"]
 [ext_resource type="Resource" uid="uid://btrq546gs6qdq" path="res://resources/FastCollider.tres" id="4_ojr7b"]
+[ext_resource type="SpriteFrames" uid="uid://2n1n7gdktpgq" path="res://resources/BombAsplode.tres" id="4_xmtg6"]
 [ext_resource type="Resource" uid="uid://oq6sughmeu67" path="res://resources/StraightShooter.tres" id="5_11dgb"]
 [ext_resource type="Texture2D" uid="uid://bdoao6sx2x7u6" path="res://assets/UI/BugMarket.png" id="5_nnr1r"]
 [ext_resource type="Resource" uid="uid://cu230se8aq3i4" path="res://resources/WaveLeft.tres" id="6_11lp4"]
@@ -77,7 +78,7 @@ _data = {
 }
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_0l841")
+script = ExtResource("1_w5hnb")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mgm1a")
@@ -100,6 +101,13 @@ position = Vector2(180, 440)
 [node name="BulletContainer" type="Node2D" parent="."]
 
 [node name="UnitContainer" type="Node2D" parent="."]
+
+[node name="Asplosion" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(180, 298.5)
+scale = Vector2(0.5625, 0.75625)
+sprite_frames = ExtResource("4_xmtg6")
+frame_progress = 0.520224
 
 [node name="PowerupLabel" type="Label" parent="."]
 visible = false

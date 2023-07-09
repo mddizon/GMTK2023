@@ -17,6 +17,7 @@ extends Node2D
 
 #Animations
 @onready var powerup_label = $PowerupLabel
+@onready var explosion = $Asplosion
 @onready var animation_player = $AnimationPlayer
 
 @export var units: Array[BugStats] = []
@@ -55,11 +56,17 @@ func _ready():
 
 	buttons[0].button_pressed = true
 
+	# Also really dumb. I wanted to have one of the deployment zones active at
+	# The beginning so I had to hack it in a bunch of places
 	GlobalTypes.selected_stats = buttons[0].stats
+	GlobalTypes.active_stats[2] = buttons[0].stats
+	
 	for i in GlobalTypes.active_stats.size():
 		GlobalTypes.active_stats[i] = GlobalTypes.selected_stats
 
 	AudioManager.playGameMusic()
+	
+	explosion.animation_finished.connect(_on_explosion_animation_finished)
 
 	updateBombLabel()
 	updateResourceLabel()
@@ -87,11 +94,16 @@ func _on_ship_hit():
 			n.queue_free()
 		num_bombs -= 1
 		updateBombLabel()
+		explosion.visible = true
 		AudioManager.playShipDeathSound()
+		explosion.play('default')
 	else:
 		ship.queue_free()
 		GlobalTypes.won = true
 		get_tree().change_scene_to_packed(game_over)
+
+func _on_explosion_animation_finished():
+	explosion.visible = false
 
 func _on_stage_bug(stats: BugStats):
 	GlobalTypes.selected_stats = stats
