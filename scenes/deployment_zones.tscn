@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://0if2tr8we67o"]
+[gd_scene load_steps=9 format=3 uid="uid://0if2tr8we67o"]
 
 [ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="1_ko1i4"]
 [ext_resource type="Script" path="res://scripts/deployment_zones.gd" id="2_ktlog"]
+[ext_resource type="Texture2D" uid="uid://cp6oia7x8nb4x" path="res://assets/UI/Spawners.png" id="3_4wbmc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ufwt0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8gbv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nukgp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnhuc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fg15q"]
 
 [node name="DeploymentZones" type="Control"]
 custom_minimum_size = Vector2(360, 0)
@@ -12,21 +23,37 @@ offset_bottom = 50.0
 theme = ExtResource("1_ko1i4")
 script = ExtResource("2_ktlog")
 
-[node name="ZoneContainer" type="HBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_4wbmc")
+
+[node name="ZoneContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="Deploy" type="Button" parent="."]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 63.0
-offset_right = 240.0
-offset_bottom = 100.0
-text = "Deploy"
+offset_left = 125.0
+offset_top = -34.0
+offset_right = 239.0
+offset_bottom = 1.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ufwt0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_t8gbv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nukgp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dnhuc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fg15q")
 
+[connection signal="button_down" from="Deploy" to="." method="_on_deploy_button_down"]
+[connection signal="button_up" from="Deploy" to="." method="_on_deploy_button_up"]
 [connection signal="pressed" from="Deploy" to="." method="_on_deploy_pressed"]

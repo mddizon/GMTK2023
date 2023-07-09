@@ -1,13 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4hjhvq73ral7"]
+[gd_scene load_steps=7 format=3 uid="uid://d4hjhvq73ral7"]
 
 [ext_resource type="Script" path="res://scripts/deployment_zone.gd" id="1_kobbl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1whqh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iemw7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5bf6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7x0jc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3g8ni"]
 
 [node name="DeploymentZone" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1whqh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iemw7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r5bf6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7x0jc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3g8ni")
-text = "*"
 script = ExtResource("1_kobbl")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

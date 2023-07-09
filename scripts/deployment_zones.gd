@@ -1,11 +1,14 @@
 extends Control
 
+@onready var Background = $TextureRect
 @onready var ZoneContainer = $ZoneContainer
 @onready var Deploy = $Deploy
 
 signal zone_spawn_toggled(index, zone_scene, remove)
 signal deploy_zones
 
+var button_down = preload("res://assets/UI/Spawners_pushed.png")
+var button_up = preload("res://assets/UI/Spawners.png")
 var deployment_zone = preload("res://scenes/deployment_zone.tscn")
 
 var cooldown_timer = 0.0
@@ -29,3 +32,10 @@ func _on_deploy_pressed():
 		cooldown_timer = cooldown_value
 		deploy_zones.emit()
 		canBuy = false
+
+
+func _on_deploy_button_down():
+	Background.texture = button_down
+
+func _on_deploy_button_up():
+	Background.texture = button_up

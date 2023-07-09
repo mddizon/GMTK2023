@@ -96,7 +96,8 @@ func _on_stage_bug(stats: BugStats):
 func calculate_cost():
 	var cost = 0;
 	for i in GlobalTypes.active_zones.size():
-		cost += GlobalTypes.active_stats[i].cost
+		if (GlobalTypes.active_zones[i]):
+			cost += GlobalTypes.active_stats[i].cost
 	return cost
 
 func deploy_bugs():

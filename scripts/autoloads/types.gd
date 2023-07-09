@@ -26,11 +26,11 @@ const clampEnd = Vector2(340, 440)
 
 # I can't be bothered so i'm just hardcoding this
 var deployment_positions = [
-	Vector2(36, 60),
-	Vector2(108, 60),
-	Vector2(180, 60),
-	Vector2(252, 60),
-	Vector2(324, 60)
+	Vector2(38, 60),
+	Vector2(110, 60),
+	Vector2(182, 60),
+	Vector2(254, 60),
+	Vector2(326, 60)
 ]
 
 # Player stats, should really be its own resource

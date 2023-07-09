@@ -8,7 +8,6 @@ signal zone_toggled(index, toggled)
 var index = 0
 
 func _on_pressed():
-    text = ''
     var staged_bug_stats = GlobalTypes.selected_stats
     if GlobalTypes.active_zones[index] == false or staged_bug_stats != stats:
         stats = staged_bug_stats
@@ -17,5 +16,4 @@ func _on_pressed():
         GlobalTypes.active_zones[index] = true
     else:
         icon = null
-        text = '*'
         GlobalTypes.active_zones[index] = false

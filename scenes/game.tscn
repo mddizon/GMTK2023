@@ -180,8 +180,8 @@ layout_mode = 2
 texture = ExtResource("3_tu54s")
 
 [node name="DeploymentZones" parent="." instance=ExtResource("12_uh82o")]
-offset_top = 10.0
-offset_bottom = 60.0
+offset_top = 38.0
+offset_bottom = 88.0
 
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="deploy_zones" from="DeploymentZones" to="." method="_on_deployment_zones_deploy_zones"]
