@@ -64,8 +64,6 @@ func _process(delta):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
-	elif Input.is_action_just_pressed("spawn"):
-		deploy_bugs()
 	
 	for powerup in GlobalTypes.active_powerups.keys():
 		GlobalTypes.active_powerups[powerup] -= delta
@@ -78,6 +76,7 @@ func _on_ship_fired(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	bullet_container.add_child(laser)
+	AudioManager.playLaserSound()
 
 func _on_ship_hit():
 	if num_bombs > 0:
@@ -87,6 +86,7 @@ func _on_ship_hit():
 			n.queue_free()
 		num_bombs -= 1
 		updateBombLabel()
+		AudioManager.playShipDeathSound()
 	else:
 		ship.queue_free()
 		GlobalTypes.won = true
@@ -113,6 +113,7 @@ func deploy_bugs():
 				spawn_bug(zone_position, stats)
 		resources -= cost
 		updateResourceLabel()
+		AudioManager.playBugLaunchSound()
 
 func spawn_bug(zone_position, stats):
 	var bug = Unit.instantiate()
@@ -129,6 +130,9 @@ func _on_bug_died(drop_rate, powerups):
 	if roll < drop_rate:
 		var powerup = randi_range(0, powerups.size())
 		GlobalTypes.active_powerups[powerup] = powerup_time
+		AudioManager.playPowerupSound()
+	else:
+		AudioManager.playBugDeathSound()
 
 func _on_bug_fired(scene, location, speed):
 	var laser = scene.instantiate()
@@ -136,6 +140,7 @@ func _on_bug_fired(scene, location, speed):
 	laser.speed = speed
 	laser.global_position = location
 	bullet_container.add_child(laser)
+	AudioManager.playLaserSound()
 
 func updateBombLabel():
 	for n in bomb_counter.get_children():
