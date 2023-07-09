@@ -11,8 +11,14 @@ var game = preload("res://scenes/game.tscn")
 @export_multiline var lose_text = ""
 
 func _ready():
-	title.text = win_title if GlobalTypes.won else lose_title
-	description.text = win_text if GlobalTypes.won else lose_text
+	if GlobalTypes.won:
+		title.text = win_title
+		description.text = win_text
+		AudioManager.playWinMusic()
+	else:
+		title.text = lose_title
+		description.text = lose_text
+		AudioManager.playLoseMusic()
 
 func _on_play_again_pressed():
 	get_tree().change_scene_to_packed(game)

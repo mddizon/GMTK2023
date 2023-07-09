@@ -53,6 +53,8 @@ func _ready():
 	for i in GlobalTypes.active_stats.size():
 		GlobalTypes.active_stats[i] = GlobalTypes.selected_stats
 
+	AudioManager.playGameMusic()
+
 	updateBombLabel()
 	updateResourceLabel()
 
