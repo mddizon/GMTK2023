@@ -55,8 +55,10 @@ win_title = "Victory!"
 lose_title = "Defeat!"
 win_text = "Thank you o glorious one!
 
-The ship has been successfully destroyed with minimal losses. you can easily spawn more brood to refill our ranks. Galactic domination is upon us!"
-lose_text = "The humans have destroyed our planet and killed our queen!"
+The human ship has been successfully destroyed! your brood will spread across the galaxy. 
+
+Galactic domination is upon us!"
+lose_text = "The humans have destroyed our planet, and killed our queen!"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_jafjg")

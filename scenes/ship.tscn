@@ -7,6 +7,8 @@
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_hoyes")
+shotSpeed = 0.75
+moveSpeed = 125
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)

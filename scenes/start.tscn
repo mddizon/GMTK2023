@@ -86,7 +86,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Emergency!
  
-The Earthlings have deployed a powerful starship, armed with a payload of powerful bombs capable of destroying the you! Command your swarm to destroy the starship before it can reach and destroy you! "
+The Earthlings have deployed a starship, armed with a payload of powerful bombs capable of destroying you, the Swarm Queen! 
+
+Command your swarm to destroy the starship before it can reach and destroy you! "
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

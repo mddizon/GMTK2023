@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_52ge8")
-cost = 3
+cost = 7
 move_pattern = 2
-move_speed = 100
-attack_pattern = 0
-shot_cooldown = 1
+move_speed = 50
+attack_pattern = 1
+shot_cooldown = 3
 shot_speed = 200
 powerup = Array[int]([0])
 drop_rate = 0

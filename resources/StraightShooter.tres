@@ -7,9 +7,9 @@
 script = ExtResource("1_ucgcd")
 cost = 5
 move_pattern = 0
-move_speed = 50
+move_speed = 75
 attack_pattern = 1
-shot_cooldown = 1
+shot_cooldown = 3
 shot_speed = 200
 powerup = Array[int]([0])
 drop_rate = 0

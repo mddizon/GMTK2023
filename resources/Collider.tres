@@ -7,7 +7,7 @@
 script = ExtResource("2_v2ukf")
 cost = 1
 move_pattern = 0
-move_speed = 150
+move_speed = 100
 attack_pattern = 0
 shot_cooldown = 1
 shot_speed = 200

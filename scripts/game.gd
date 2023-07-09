@@ -17,7 +17,7 @@ extends Node2D
 
 @export var units: Array[BugStats] = []
 @export var num_bombs = 3
-@export var resources = 100
+@export var resources = 200
 @export var spawn_cooldown = 1
 @export var total_distance = 5000
 
