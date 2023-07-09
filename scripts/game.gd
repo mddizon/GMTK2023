@@ -20,6 +20,8 @@ extends Node2D
 @export var resources = 200
 @export var spawn_cooldown = 1
 @export var total_distance = 5000
+@export var powerup_time = 10
+var powerup_time_remaining = 0
 
 var bomb_texture = preload("res://assets/HumanShip/BombCounter.png")
 var game_over = preload("res://scenes/game_over.tscn")
@@ -30,6 +32,13 @@ var active_deployment_zones = [null, null, null, null, null]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GlobalTypes.won = false
+	GlobalTypes.active_zones = [false, false, false, false, false]
+	GlobalTypes.active_stats = [null, null, null, null, null]
+	GlobalTypes.selected_stats = null
+	GlobalTypes.active_powerups = {}
+	GlobalTypes.powerup_time_remaining = 0
+
 	ship.global_position = spawn_position.global_position
 	ship.ship_fired.connect(_on_ship_fired)
 	ship.ship_hit.connect(_on_ship_hit)
@@ -44,18 +53,22 @@ func _ready():
 	for i in GlobalTypes.active_stats.size():
 		GlobalTypes.active_stats[i] = GlobalTypes.selected_stats
 
-	GlobalTypes.won = false
 	updateBombLabel()
 	updateResourceLabel()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 	elif Input.is_action_just_pressed("spawn"):
 		deploy_bugs()
+	
+	for powerup in GlobalTypes.active_powerups.keys():
+		GlobalTypes.active_powerups[powerup] -= delta
+		if GlobalTypes.active_powerups[powerup] <= 0:
+			GlobalTypes.active_powerups.erase(powerup)
 	
 	updateDistanceLabel()
 
@@ -103,7 +116,15 @@ func spawn_bug(zone_position, stats):
 	bug.global_position = zone_position
 	bug.stats = stats
 	bug.bug_fired.connect(_on_bug_fired)
+	bug.bug_died.connect(_on_bug_died)
 	unit_container.add_child(bug)
+
+func _on_bug_died(drop_rate, powerups):
+	#Roll for powerups
+	var roll = randf()
+	if roll < drop_rate:
+		var powerup = randi_range(0, powerups.size())
+		GlobalTypes.active_powerups[powerup] = powerup_time
 
 func _on_bug_fired(scene, location, speed):
 	var laser = scene.instantiate()

@@ -38,3 +38,5 @@ var won = false
 var active_zones = [false, false, false, false, false]
 var active_stats: Array[BugStats] = [null, null, null, null, null]
 var selected_stats = null
+var active_powerups = {}
+var powerup_time_remaining = 0

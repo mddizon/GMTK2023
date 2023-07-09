@@ -3,6 +3,7 @@ extends Area2D
 class_name Unit
 
 signal bug_fired(scene, location, speed)
+signal bug_died(drop_rate, powerups)
 
 @onready var sprite = $Sprite2D
 @onready var shotPosition = $ShotPosition
@@ -45,6 +46,7 @@ func _physics_process(delta):
 			cooldown_timer -= delta
 
 func die():
+	bug_died.emit(stats.drop_rate, stats.powerup)
 	queue_free()
 
 func _on_body_entered(body):
