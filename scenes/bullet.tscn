@@ -20,10 +20,9 @@ texture = ExtResource("2_pgr3h")
 position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_w5gf7")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -4)
 scale = Vector2(0.575, 0.35)
-enable_node_path = NodePath("../CollisionShape2D")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
