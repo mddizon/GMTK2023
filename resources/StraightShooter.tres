@@ -12,5 +12,5 @@ attack_pattern = 1
 shot_cooldown = 3
 shot_speed = 200
 powerup = Array[int]([0])
-drop_rate = 0.15
+drop_rate = 0.12
 img = ExtResource("1_f41f4")
