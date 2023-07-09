@@ -26,13 +26,19 @@ func _process(delta):
 		canBuy = true
 	else:
 		cooldown_timer -= delta
+	
+	if Input.is_action_just_pressed("spawn"):
+		_on_deploy_button_down()
+	
+	if Input.is_action_just_released("spawn"):
+		_on_deploy_button_up()
+		_on_deploy_pressed()
 
 func _on_deploy_pressed():
 	if canBuy:
 		cooldown_timer = cooldown_value
 		deploy_zones.emit()
 		canBuy = false
-
 
 func _on_deploy_button_down():
 	Background.texture = button_down
