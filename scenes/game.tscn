@@ -79,15 +79,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
 [node name="Resource" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resources: 999"
 horizontal_alignment = 1
 
+[node name="MarginContainer2" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Hive" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hive"
 horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
 
 [node name="BugMarket" type="VBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
@@ -135,8 +146,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+
 [node name="Label" type="Label" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Distance to Hive"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -144,6 +160,7 @@ vertical_alignment = 2
 [node name="DistanceValue" type="Label" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
 text = "5000 Parsecs"
 horizontal_alignment = 1
 
