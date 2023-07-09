@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=15 format=3 uid="uid://dolngcivhpq68"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_f0njs"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_drjjk"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
@@ -17,8 +17,10 @@
 shader = ExtResource("3_ae1a1")
 shader_parameter/bg_color = null
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_t0w7w"]
+
 [node name="Game" type="Node2D"]
-script = ExtResource("1_f0njs")
+script = ExtResource("1_drjjk")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mgm1a")
@@ -32,8 +34,6 @@ autostart = true
 
 [node name="Ship" parent="." instance=ExtResource("2_svg3i")]
 position = Vector2(179, 446)
-shotSpeed = 0.8
-powerupSpeed = 0.4
 
 [node name="ShipSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(180, 440)
@@ -78,26 +78,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 20
-
 [node name="Resource" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resources: 999"
 horizontal_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Hive" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hive"
 horizontal_alignment = 1
-
-[node name="MarginContainer3" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 25
 
 [node name="BugMarket" type="VBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
@@ -110,6 +99,7 @@ size_flags_horizontal = 4
 
 [node name="BugButton" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_t0w7w")
 stats = ExtResource("3_nobio")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
@@ -147,11 +137,9 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 3
 
 [node name="Label" type="Label" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
 text = "Distance to Hive"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -159,7 +147,6 @@ vertical_alignment = 2
 [node name="DistanceValue" type="Label" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 30
 text = "5000 Parsecs"
 horizontal_alignment = 1
 
@@ -201,9 +188,8 @@ texture = ExtResource("3_tu54s")
 [node name="DeploymentZones" parent="." instance=ExtResource("12_uh82o")]
 offset_top = 38.0
 offset_bottom = 88.0
-cooldown_value = 1.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="deploy_zones" from="DeploymentZones" to="." method="_on_deployment_zones_deploy_zones"]

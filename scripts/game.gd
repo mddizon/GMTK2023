@@ -33,7 +33,7 @@ var active_deployment_zones = [null, null, null, null, null]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GlobalTypes.won = false
-	GlobalTypes.active_zones = [false, false, false, false, false]
+	GlobalTypes.active_zones = [false, false, true, false, false]
 	GlobalTypes.active_stats = [null, null, null, null, null]
 	GlobalTypes.selected_stats = null
 	GlobalTypes.active_powerups = {}
@@ -60,11 +60,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-	elif Input.is_action_just_pressed("reset"):
-		get_tree().reload_current_scene()
-	
 	for powerup in GlobalTypes.active_powerups.keys():
 		GlobalTypes.active_powerups[powerup] -= delta
 		if GlobalTypes.active_powerups[powerup] <= 0:
