@@ -17,10 +17,10 @@ extends Node2D
 
 @export var units: Array[BugStats] = []
 @export var num_bombs = 3
-@export var resources = 200
+@export var resources = 400
 @export var spawn_cooldown = 1
 @export var total_distance = 5000
-@export var powerup_time = 10
+@export var powerup_time = 5
 var powerup_time_remaining = 0
 
 var bomb_texture = preload("res://assets/HumanShip/BombCounter.png")

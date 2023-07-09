@@ -7,10 +7,10 @@
 script = ExtResource("1_52ge8")
 cost = 7
 move_pattern = 2
-move_speed = 50
+move_speed = 75
 attack_pattern = 1
-shot_cooldown = 3
+shot_cooldown = 2
 shot_speed = 200
 powerup = Array[int]([0])
-drop_rate = 0
+drop_rate = 0.2
 img = ExtResource("1_23ili")

@@ -23,7 +23,7 @@ var cooldown_timer = 0.0
 var laser_scene = preload("res://scenes/bullet.tscn")
 
 func _ready():
-	velocity.x = 0
+	velocity.x = moveSpeed
 
 func _physics_process(delta):
 	if cooldown_timer <= 0.0:
