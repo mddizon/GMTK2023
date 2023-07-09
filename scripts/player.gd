@@ -13,6 +13,7 @@ signal ship_hit
 @export var avoid_range = 100
 
 @onready var shotPosition = $ShotPosition
+@onready var animationplayer = $AnimationPlayer
 
 var powerup_timer = 10
 var powerups = []
@@ -24,6 +25,7 @@ var laser_scene = preload("res://scenes/bullet.tscn")
 
 func _ready():
 	velocity.x = 0
+	animationplayer.play("Ship_Idle")
 
 func _physics_process(delta):
 	if cooldown_timer <= 0.0:
