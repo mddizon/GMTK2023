@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=22 format=3 uid="uid://dolngcivhpq68"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_drjjk"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_0l841"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
 [ext_resource type="PackedScene" uid="uid://dl211l7gd0c6e" path="res://scenes/bug_button.tscn" id="3_0kw1x"]
 [ext_resource type="Shader" path="res://assets/game.gdshader" id="3_ae1a1"]
@@ -9,18 +9,29 @@
 [ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="4_fh37n"]
 [ext_resource type="Resource" uid="uid://btrq546gs6qdq" path="res://resources/FastCollider.tres" id="4_ojr7b"]
 [ext_resource type="Resource" uid="uid://oq6sughmeu67" path="res://resources/StraightShooter.tres" id="5_11dgb"]
+[ext_resource type="Texture2D" uid="uid://bdoao6sx2x7u6" path="res://assets/UI/BugMarket.png" id="5_nnr1r"]
 [ext_resource type="Resource" uid="uid://cu230se8aq3i4" path="res://resources/WaveLeft.tres" id="6_11lp4"]
 [ext_resource type="Resource" uid="uid://cg1tyqkstuht2" path="res://resources/WaveRight.tres" id="7_1lfop"]
+[ext_resource type="Texture2D" uid="uid://cj03ptnqftfhh" path="res://assets/UI/Timer.png" id="12_d1f82"]
 [ext_resource type="PackedScene" uid="uid://0if2tr8we67o" path="res://scenes/deployment_zones.tscn" id="12_uh82o"]
+[ext_resource type="Texture2D" uid="uid://bm70mu7bhhjfl" path="res://assets/UI/bomb_tracker.png" id="13_q27el"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgm1a"]
 shader = ExtResource("3_ae1a1")
 shader_parameter/bg_color = null
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_t0w7w"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_xy6f5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_okwi3"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ldj6j"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_2bjq8"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qtpyu"]
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_drjjk")
+script = ExtResource("1_0l841")
 
 [node name="Background" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_mgm1a")
@@ -34,6 +45,8 @@ autostart = true
 
 [node name="Ship" parent="." instance=ExtResource("2_svg3i")]
 position = Vector2(179, 446)
+shotSpeed = 0.8
+powerupSpeed = 0.4
 
 [node name="ShipSpawnPosition" type="Marker2D" parent="."]
 position = Vector2(180, 440)
@@ -65,10 +78,10 @@ size_flags_horizontal = 0
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="ResourceContainer" type="ColorRect" parent="Control/PanelContainer/Rows"]
+[node name="ResourceContainer" type="TextureRect" parent="Control/PanelContainer/Rows"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-color = Color(0.305882, 0.568627, 0.364706, 1)
+texture = ExtResource("5_nnr1r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer"]
 layout_mode = 1
@@ -78,15 +91,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
 [node name="Resource" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resources: 999"
 horizontal_alignment = 1
 
+[node name="MarginContainer2" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Hive" type="Label" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
 text = "Hive"
 horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
 
 [node name="BugMarket" type="VBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer"]
 layout_mode = 2
@@ -99,15 +123,18 @@ size_flags_horizontal = 4
 
 [node name="BugButton" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_t0w7w")
+button_mask = 0
+button_group = SubResource("ButtonGroup_xy6f5")
 stats = ExtResource("3_nobio")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_okwi3")
 stats = ExtResource("4_ojr7b")
 
 [node name="BugButton3" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_ldj6j")
 stats = ExtResource("5_11dgb")
 
 [node name="BugRow2" type="HBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket"]
@@ -116,16 +143,18 @@ size_flags_horizontal = 4
 
 [node name="BugButton" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow2" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_2bjq8")
 stats = ExtResource("6_11lp4")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow2" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
+button_group = SubResource("ButtonGroup_qtpyu")
 stats = ExtResource("7_1lfop")
 
-[node name="DistanceContainer" type="ColorRect" parent="Control/PanelContainer/Rows"]
+[node name="DistanceContainer" type="TextureRect" parent="Control/PanelContainer/Rows"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-color = Color(0.294118, 0.294118, 0.294118, 1)
+texture = ExtResource("12_d1f82")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/Rows/DistanceContainer"]
 layout_mode = 1
@@ -137,9 +166,11 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 3
 
 [node name="Label" type="Label" parent="Control/PanelContainer/Rows/DistanceContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Distance to Hive"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -150,10 +181,10 @@ size_flags_vertical = 3
 text = "5000 Parsecs"
 horizontal_alignment = 1
 
-[node name="BombContainer" type="ColorRect" parent="Control/PanelContainer/Rows"]
+[node name="BombContainer" type="TextureRect" parent="Control/PanelContainer/Rows"]
 layout_mode = 2
 size_flags_vertical = 3
-color = Color(0.258824, 0.466667, 0.827451, 1)
+texture = ExtResource("13_q27el")
 
 [node name="BombRows" type="VBoxContainer" parent="Control/PanelContainer/Rows/BombContainer"]
 layout_mode = 1

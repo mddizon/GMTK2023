@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl211l7gd0c6e"]
+[gd_scene load_steps=3 format=3 uid="uid://dl211l7gd0c6e"]
 
 [ext_resource type="Script" path="res://scripts/bug_button.gd" id="2_umthx"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_aeso5"]
+
 [node name="BugButton" type="Button"]
+toggle_mode = true
+button_group = SubResource("ButtonGroup_aeso5")
 script = ExtResource("2_umthx")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
