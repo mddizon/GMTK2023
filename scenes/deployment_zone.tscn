@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4hjhvq73ral7"]
+
+[ext_resource type="Script" path="res://scripts/deployment_zone.gd" id="1_kobbl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3g8ni"]
+
+[node name="DeploymentZone" type="Button"]
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3g8ni")
+text = "*"
+script = ExtResource("1_kobbl")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

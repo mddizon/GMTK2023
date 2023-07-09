@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=14 format=3 uid="uid://dolngcivhpq68"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_n1rjj"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://oq6sughmeu67" path="res://resources/StraightShooter.tres" id="5_11dgb"]
 [ext_resource type="Resource" uid="uid://cu230se8aq3i4" path="res://resources/WaveLeft.tres" id="6_11lp4"]
 [ext_resource type="Resource" uid="uid://cg1tyqkstuht2" path="res://resources/WaveRight.tres" id="7_1lfop"]
+[ext_resource type="PackedScene" uid="uid://0if2tr8we67o" path="res://scenes/deployment_zones.tscn" id="12_uh82o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgm1a"]
 shader = ExtResource("3_ae1a1")
@@ -25,7 +26,7 @@ offset_right = 360.0
 offset_bottom = 480.0
 
 [node name="GameOverTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 100000.0
 one_shot = true
 autostart = true
 
@@ -178,4 +179,10 @@ texture = ExtResource("3_tu54s")
 layout_mode = 2
 texture = ExtResource("3_tu54s")
 
+[node name="DeploymentZones" parent="." instance=ExtResource("12_uh82o")]
+offset_top = 10.0
+offset_bottom = 60.0
+
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
+[connection signal="deploy_zones" from="DeploymentZones" to="." method="_on_deployment_zones_deploy_zones"]
+[connection signal="zone_spawn_toggled" from="DeploymentZones" to="." method="_on_deployment_zones_zone_spawn_toggled"]

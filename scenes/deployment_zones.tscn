@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://0if2tr8we67o"]
+
+[ext_resource type="Theme" uid="uid://5v8prv8ql76y" path="res://assets/fonts/general.tres" id="1_ko1i4"]
+[ext_resource type="Script" path="res://scripts/deployment_zones.gd" id="2_ktlog"]
+
+[node name="DeploymentZones" type="Control"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 50.0
+theme = ExtResource("1_ko1i4")
+script = ExtResource("2_ktlog")
+
+[node name="ZoneContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Deploy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 63.0
+offset_right = 240.0
+offset_bottom = 100.0
+text = "Deploy"
+
+[connection signal="pressed" from="Deploy" to="." method="_on_deploy_pressed"]

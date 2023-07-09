@@ -15,5 +15,4 @@ func _ready():
 	description.text = win_text if GlobalTypes.won else lose_text
 
 func _on_play_again_pressed():
-	var gameInstance = game.instantiate()
 	get_tree().change_scene_to_packed(game)

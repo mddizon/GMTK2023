@@ -24,6 +24,9 @@ extends Node2D
 var bomb_texture = preload("res://assets/HumanShip/BombCounter.png")
 var game_over = preload("res://scenes/game_over.tscn")
 var Unit = preload("res://scenes/unit.tscn")
+var DeploymentZone = preload("res://scenes/deployment_zone.tscn")
+
+var active_deployment_zones = [null, null, null, null, null]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,12 +36,15 @@ func _ready():
 	
 	var buttons = bug_row_1.get_children()
 	buttons.append_array(bug_row_2.get_children())
-	
+
 	for button in buttons:
-		button.spawn_bug.connect(_on_spawn_bug)
+		button.spawn_bug.connect(_on_stage_bug)
+
+	GlobalTypes.selected_stats = buttons[0].stats;
+	for i in GlobalTypes.active_stats.size():
+		GlobalTypes.active_stats[i] = GlobalTypes.selected_stats
 
 	GlobalTypes.won = false
-	
 	updateBombLabel()
 	updateResourceLabel()
 
@@ -48,6 +54,8 @@ func _process(_delta):
 		get_tree().quit()
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+	elif Input.is_action_just_pressed("spawn"):
+		deploy_bugs()
 	
 	updateDistanceLabel()
 
@@ -69,15 +77,33 @@ func _on_ship_hit():
 		GlobalTypes.won = true
 		get_tree().change_scene_to_packed(game_over)
 
-func _on_spawn_bug(stats:BugStats):
-	if (stats.cost <= resources):
-		var bug = Unit.instantiate()
-		bug.global_position = Vector2(randf_range(50, 340), 50)
-		bug.stats = stats
-		bug.bug_fired.connect(_on_bug_fired)
-		unit_container.add_child(bug)
-		resources -= stats.cost
+func _on_stage_bug(stats: BugStats):
+	GlobalTypes.selected_stats = stats
+
+func calculate_cost():
+	var cost = 0;
+	for i in GlobalTypes.active_zones.size():
+		cost += GlobalTypes.active_stats[i].cost
+	return cost
+
+func deploy_bugs():
+	var cost = calculate_cost();
+	if cost <= resources:
+		for i in GlobalTypes.deployment_positions.size():
+			var zone_position = GlobalTypes.deployment_positions[i]
+			var active = GlobalTypes.active_zones[i]
+			var stats = GlobalTypes.active_stats[i]
+			if (active && stats):
+				spawn_bug(zone_position, stats)
+		resources -= cost
 		updateResourceLabel()
+
+func spawn_bug(zone_position, stats):
+	var bug = Unit.instantiate()
+	bug.global_position = zone_position
+	bug.stats = stats
+	bug.bug_fired.connect(_on_bug_fired)
+	unit_container.add_child(bug)
 
 func _on_bug_fired(scene, location, speed):
 	var laser = scene.instantiate()
@@ -106,3 +132,11 @@ func _on_game_over_timer_timeout():
 	if num_bombs >= 0:
 		GlobalTypes.won = false
 		get_tree().change_scene_to_packed(game_over)
+
+func _on_deployment_zones_zone_spawn_toggled(index, _zone, remove):
+	GlobalTypes.active_zones[index] = not remove
+	if !remove:
+		GlobalTypes.active_stats[index] = GlobalTypes.selected_stats
+
+func _on_deployment_zones_deploy_zones():
+	deploy_bugs()
