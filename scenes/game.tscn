@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dolngcivhpq68"]
+[gd_scene load_steps=18 format=3 uid="uid://dolngcivhpq68"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_0l841"]
 [ext_resource type="PackedScene" uid="uid://cybfrs2n2os88" path="res://scenes/ship.tscn" id="2_svg3i"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bdoao6sx2x7u6" path="res://assets/UI/BugMarket.png" id="5_nnr1r"]
 [ext_resource type="Resource" uid="uid://cu230se8aq3i4" path="res://resources/WaveLeft.tres" id="6_11lp4"]
 [ext_resource type="Resource" uid="uid://cg1tyqkstuht2" path="res://resources/WaveRight.tres" id="7_1lfop"]
+[ext_resource type="ButtonGroup" uid="uid://4yw12kdg20yp" path="res://resources/BugMarketGroup.tres" id="7_ngndv"]
 [ext_resource type="Texture2D" uid="uid://cj03ptnqftfhh" path="res://assets/UI/Timer.png" id="12_d1f82"]
 [ext_resource type="PackedScene" uid="uid://0if2tr8we67o" path="res://scenes/deployment_zones.tscn" id="12_uh82o"]
 [ext_resource type="Texture2D" uid="uid://bm70mu7bhhjfl" path="res://assets/UI/bomb_tracker.png" id="13_q27el"]
@@ -19,16 +20,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgm1a"]
 shader = ExtResource("3_ae1a1")
 shader_parameter/bg_color = null
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_xy6f5"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_okwi3"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_ldj6j"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_2bjq8"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_qtpyu"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0l841")
@@ -123,18 +114,20 @@ size_flags_horizontal = 4
 
 [node name="BugButton" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_mask = 0
-button_group = SubResource("ButtonGroup_xy6f5")
+toggle_mode = true
+button_group = ExtResource("7_ngndv")
 stats = ExtResource("3_nobio")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_okwi3")
+toggle_mode = true
+button_group = ExtResource("7_ngndv")
 stats = ExtResource("4_ojr7b")
 
 [node name="BugButton3" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow1" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_ldj6j")
+toggle_mode = true
+button_group = ExtResource("7_ngndv")
 stats = ExtResource("5_11dgb")
 
 [node name="BugRow2" type="HBoxContainer" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket"]
@@ -143,12 +136,14 @@ size_flags_horizontal = 4
 
 [node name="BugButton" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow2" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_2bjq8")
+toggle_mode = true
+button_group = ExtResource("7_ngndv")
 stats = ExtResource("6_11lp4")
 
 [node name="BugButton2" parent="Control/PanelContainer/Rows/ResourceContainer/VBoxContainer/BugMarket/BugRow2" instance=ExtResource("3_0kw1x")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qtpyu")
+toggle_mode = true
+button_group = ExtResource("7_ngndv")
 stats = ExtResource("7_1lfop")
 
 [node name="DistanceContainer" type="TextureRect" parent="Control/PanelContainer/Rows"]

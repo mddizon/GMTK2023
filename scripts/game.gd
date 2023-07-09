@@ -49,7 +49,9 @@ func _ready():
 	for button in buttons:
 		button.spawn_bug.connect(_on_stage_bug)
 
-	GlobalTypes.selected_stats = buttons[0].stats;
+	buttons[0].button_pressed = true
+
+	GlobalTypes.selected_stats = buttons[0].stats
 	for i in GlobalTypes.active_stats.size():
 		GlobalTypes.active_stats[i] = GlobalTypes.selected_stats
 

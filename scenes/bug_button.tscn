@@ -1,12 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl211l7gd0c6e"]
+[gd_scene load_steps=7 format=3 uid="uid://dl211l7gd0c6e"]
 
 [ext_resource type="Script" path="res://scripts/bug_button.gd" id="2_umthx"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_aeso5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vx8dm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hicqw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxrhc"]
+bg_color = Color(0.709804, 0.709804, 0.709804, 0.105882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbbsv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjvoy"]
 
 [node name="BugButton" type="Button"]
-toggle_mode = true
-button_group = SubResource("ButtonGroup_aeso5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vx8dm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hicqw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wxrhc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qbbsv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tjvoy")
+action_mode = 0
 script = ExtResource("2_umthx")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
