@@ -114,6 +114,7 @@ func deploy_bugs():
 func spawn_bug(zone_position, stats):
 	var bug = Unit.instantiate()
 	bug.global_position = zone_position
+	bug.add_to_group("bugs")
 	bug.stats = stats
 	bug.bug_fired.connect(_on_bug_fired)
 	bug.bug_died.connect(_on_bug_died)
@@ -128,6 +129,7 @@ func _on_bug_died(drop_rate, powerups):
 
 func _on_bug_fired(scene, location, speed):
 	var laser = scene.instantiate()
+	laser.add_to_group("bugs")
 	laser.speed = speed
 	laser.global_position = location
 	bullet_container.add_child(laser)
