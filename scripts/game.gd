@@ -15,6 +15,10 @@ extends Node2D
 @onready var timer = $GameOverTimer
 @onready var gameover_label = $Control/PanelContainer/Rows/DistanceContainer/VBoxContainer/DistanceValue
 
+#Animations
+@onready var powerup_label = $PowerupLabel
+@onready var animation_player = $AnimationPlayer
+
 @export var units: Array[BugStats] = []
 @export var num_bombs = 3
 @export var resources = 400
@@ -121,6 +125,8 @@ func _on_bug_died(drop_rate, powerups):
 		var powerup = randi_range(0, powerups.size())
 		GlobalTypes.active_powerups[powerup] = powerup_time
 		AudioManager.playPowerupSound()
+		powerup_label.visible = true
+		animation_player.play("PowerupToast")
 	else:
 		AudioManager.playBugDeathSound()
 
